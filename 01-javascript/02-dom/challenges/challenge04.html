@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>#04</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" name="name">
+    <button type="button" onclick="addName()">Add name</button>
+    <ul></ul>
+  </div>
+  <script>
+    function addName() {
+      const input = document.querySelector("input");
+      const li = document.createElement("li");
+      li.appendChild(document.createTextNode(input.value));
+      const ul = document.querySelector("ul");
+      ul.appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
