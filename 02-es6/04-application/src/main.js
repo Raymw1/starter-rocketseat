@@ -2,11 +2,12 @@ import api from "./api";
 
 class App {
   constructor() {
-    this.repositories = [];
+    this.repositories = JSON.parse(localStorage.getItem("repositories")) || [];
     this.formElement = document.getElementById("repo-form");
     this.listElement = document.getElementById("repo-list");
     this.inputElement = document.querySelector("input[name=repository]");
     this.registerHandlers();
+    this.renderRepositories();
   }
 
   registerHandlers() {
@@ -40,6 +41,7 @@ class App {
         html_url
       });
       this.inputElement.value = "";
+      localStorage.setItem("repositories", JSON.stringify(this.repositories))
       this.renderRepositories();
     } catch (error) {
       alert("Repository not found!");
