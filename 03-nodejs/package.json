@@ -1,0 +1,23 @@
+{
+  "name": "03-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "keywords": [],
+  "author": "Rayan Wilbert",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.8",
+    "mongoose-paginate": "^5.0.3",
+    "require-dir": "^1.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
