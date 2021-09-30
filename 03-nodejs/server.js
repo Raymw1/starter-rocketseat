@@ -14,7 +14,7 @@ requireDir("./src/models");
 
 app.use("/api", require("./src/routes"));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Go to http://127.0.0.1:${PORT}`);
 });
