@@ -8,6 +8,7 @@ export default class Main extends Component {
   static navigationOptions = HeaderStyle;
 
   state = {
+    productInfo: {},
     products: [],
     page: 1,
   };
@@ -16,14 +17,27 @@ export default class Main extends Component {
     this.loadProducts();
   }
 
-  loadProducts = async () => {
+  loadProducts = async (page = 1) => {
     try {
-      const response = await api.get('/products');
-      const {docs} = response.data;
-      this.setState({products: docs});
+      const response = await api.get(`/products?page=${page}`);
+      const {docs, ...productInfo} = response.data;
+      this.setState({
+        products: [...this.state.products, ...docs],
+        productInfo,
+        page,
+      });
     } catch (error) {
       console.error(error);
     }
+  };
+
+  loadMore = () => {
+    const {page, productInfo} = this.state;
+    if (page === productInfo.pages) {
+      return;
+    }
+    const pageNumber = page + 1;
+    this.loadProducts(pageNumber);
   };
 
   renderItem = ({item}) => (
@@ -45,6 +59,8 @@ export default class Main extends Component {
           data={products}
           keyExtractor={product => product._id}
           renderItem={this.renderItem}
+          onEndReached={this.loadMore}
+          onEndReachedThreshold={0.1}
         />
       </View>
     );
